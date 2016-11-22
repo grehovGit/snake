@@ -40,8 +40,8 @@ public class TreeHurt extends DynamicGameObject {
 		if(roll) {
 			for (Branch branch : branches) {
 				RevoluteJoint joint = branch.getRootJoint();
-				joint.setMotorSpeed(-5);
-				joint.setMaxMotorTorque(5);
+				joint.setMotorSpeed(-150);
+				joint.setMaxMotorTorque(150);
 			}
 		}
 	}
@@ -63,7 +63,6 @@ public class TreeHurt extends DynamicGameObject {
 	    	super(x, y, Statics.Render.STANDART_SIZE_1,	Statics.Render.STANDART_SIZE_1,	angle, 
 	    			Statics.DynamicGameObject.TREE_HURT_ORDYNARY_SEGMENT, level, world);
 	    	myJoint = null;
-	    	///!!!
 	    	int filter = getTreeGroupFilter();
 	    	PhysicsBox2d.setBodyFilter(filter, myBody);
 		}

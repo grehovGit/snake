@@ -2479,7 +2479,8 @@ public class PhysicsBox2d {
 	}
 	
 	public int addCharacterFilterGroup(Body body) {
-		setBodyFilter(charsCounter, body);
-		return charsCounter++;
+		int newGroupFilter = Statics.PhysicsBox2D.FILTER_GROUP_CHAR_START_RANGE - charsCounter++;
+		setBodyFilter(newGroupFilter, body);
+		return newGroupFilter;
 	}
 }
