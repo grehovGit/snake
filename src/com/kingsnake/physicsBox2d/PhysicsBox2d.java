@@ -42,6 +42,7 @@ import com.example.framework.model.HealthScore;
 import com.example.framework.model.Snake;
 import com.example.framework.model.SnakePart;
 import com.example.framework.model.Statics;
+import com.example.framework.model.WorldProcessingImpl;
 import com.example.framework.model.Statics.BodyData;
 import com.example.framework.model.WorldKingSnake;
 import com.example.framework.utils.SortUtils;
@@ -73,6 +74,7 @@ public class PhysicsBox2d {
 	static final short FIXTURE_PROPERTY4_SENSOR_FIGHT_SKILL_LEFT = 1;
 	static final short FIXTURE_PROPERTY4_SENSOR_FIGHT_SKILL_RIGHT = 2;
 	static final short FIXTURE_PROPERTY4_SENSOR_FIGHT_SKILL_BACK = 3;
+	static final short FIXTURE_PROPERTY4_SENSOR_FIGHT_SKILL_TREEHURT = 4;
 	
 	static final short FIXTURE_PROPERTY4_CHARACTER_JAWS = 20; 
 	
@@ -777,6 +779,26 @@ public class PhysicsBox2d {
 		world2d.QueryAABB(qRegion, xEpicenter - freezeRadius, yEpicenter - freezeRadius, xEpicenter + freezeRadius, yEpicenter + freezeRadius);	
 	}
 	
+	public boolean isEnemyInRegion(DynamicGameObject master, final float regionWidth, final float regionHeight) {
+		List<Fixture> fixList = getFixturesFromRegion(master.position.x, master.position.y, regionWidth, regionHeight);
+		for (Fixture fix : fixList) {
+			GameObject gObj = (GameObject) fix.getBody().getUserData();
+			if (gObj != null && gObj.isDynamicObject && ((DynamicGameObject)gObj).isCharacter
+					&& ((DynamicGameObject)gObj).stateHS.isDead == HealthScore.ALIVE
+					&& !WorldProcessingImpl.isCharracterFriend(master, (DynamicGameObject)gObj))
+					return true;					
+		}
+		return false;
+	}
+	
+	List<Fixture> getFixturesFromRegion(final float x, final float y, final float width, final float height)
+	{
+		List<Fixture> fixList = new ArrayList<Fixture>();
+		MyQueryCallbackCommon qRegion = new MyQueryCallbackCommon(fixList);
+		world2d.QueryAABB(qRegion, x - width / 2, y - height / 2, x + width / 2, y + height / 2);
+		return fixList;		
+	}
+	
 	public void addFSkillSensor(DynamicGameObject dynObj, String sType)
 	{
 		FixtureDef fixSensorDef = new FixtureDef();		
@@ -808,7 +830,7 @@ public class PhysicsBox2d {
 		    sensorShape.setRadius(Statics.PhysicsBox2D.SENSOR_FIGHT_SKILL_BACK_RADIUS);  
 		    sensorShape.setPosition(vector.set(Statics.PhysicsBox2D.SENSOR_FIGHT_SKILL_BACK_CENTER_POS_X, Statics.PhysicsBox2D.SENSOR_FIGHT_SKILL_BACK_CENTER_POS_Y));               
 		    dynObj.myBody.createFixture(fixSensorDef).setUserData(setFixUserData(FIXTURE_PROPERTY1_SENSOR_FOR_FIGHT_SKILL, (short) 0, 0f, FIXTURE_PROPERTY4_SENSOR_FIGHT_SKILL_BACK)); 
-		}
+		}		
 		
 		sensorShape.dispose();
 	}

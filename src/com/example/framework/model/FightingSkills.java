@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.ArrayMap;
 import com.badlogic.gdx.utils.ArrayMap.Values;
 import com.badlogic.gdx.utils.ObjectMap.Entry;
 
-public class FightingSkills {
+public class FightingSkills implements FightSkills {
 	
  	public static final int WORLD_WIDTH = Statics.WKS.WORLD_WIDTH;
     public static final int WORLD_HEIGHT = Statics.WKS.WORLD_HEIGHT;
@@ -347,7 +347,8 @@ public class FightingSkills {
 			return false;
 	}
 	
-	void update(float actTime, float deltaTime)
+	@Override
+	public void update(float actTime, float deltaTime)
 	{
 		clearTargets();		
 		Values<FightingSkill> skills = fSkills.values();

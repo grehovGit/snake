@@ -120,9 +120,9 @@ public class LevelScreen implements Screen {
 
         }
         
-        game.batch.begin();
-		debugRenderer.render(game.world, camera.combined);
-        game.batch.end();
+//        game.batch.begin();
+//		debugRenderer.render(game.world, camera.combined);
+//        game.batch.end();
         oldTime = actTime;
         actTime += delta;
 	}

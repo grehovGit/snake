@@ -15,6 +15,8 @@ public class TreeHurt extends DynamicGameObject {
 	private float branchCurAngle;
 	private final Builder builder;
 	private final List<Branch> branches = new ArrayList<Branch>();
+	private enum State {normal, excited};
+	State state;
 	
 	public TreeHurt(final float x, final float y, final float angle, final int level, final WorldKingSnake world) {
     	super(x, y, 2 * Statics.Render.STANDART_SIZE_1,	2 * Statics.Render.STANDART_SIZE_1,	angle, 
@@ -25,6 +27,7 @@ public class TreeHurt extends DynamicGameObject {
     	branchCurAngle = 0;  
     	fixtureGroupFilterId = (short) world.world2d.addCharacterFilterGroup(myBody);
     	builder = new Builder(this);
+    	state = State.normal;
     	builder.buildClawTree();
 	}
 	
@@ -36,25 +39,53 @@ public class TreeHurt extends DynamicGameObject {
 		return branchCurAngle;
 	}
 	
-	private void setRolling(final boolean roll) {
-		if(roll) {
+	private void setRotation(State state) {
+		if(state == State.excited) {
 			for (Branch branch : branches) {
 				RevoluteJoint joint = branch.getRootJoint();
 				joint.setMotorSpeed(-150);
 				joint.setMaxMotorTorque(150);
 			}
+		} else {
+			for (Branch branch : branches) {
+				RevoluteJoint joint = branch.getRootJoint();
+				joint.setMotorSpeed(0);
+				joint.setMaxMotorTorque(Statics.PhysicsBox2D.TREEHURT_BRANCHITEM_JOINT_NORMAL_TORQUE);
+			}			
 		}
+	}
+	
+	private void provideWaving() {
+		for (Branch branch : branches)
+			branch.provideWaving();	
 	}
 	
 	private int getTreeGroupFilter() {
 		return fixtureGroupFilterId;
 	}
+	
+    public void update(float deltaTime) {    	
+    	super.update(deltaTime);
+    	if (world.world2d.isEnemyInRegion(this, 2 * Statics.PhysicsBox2D.SENSOR_FIGHT_SKILL_TREEHURT_RADIUS, 
+    			2 * Statics.PhysicsBox2D.SENSOR_FIGHT_SKILL_TREEHURT_RADIUS))
+    			setState(State.excited);
+    	else {
+    		setState(State.normal);
+    		provideWaving();
+    	}
+    	
+    }
+    
+    private void setState(final State state) {  
+    	if (this.state != state)
+    		setRotation(this.state = state);
+    }
 
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	interface BranchItem {
 		void setJoint(Joint joint);
-		Joint getJoint();
+		RevoluteJoint getJoint();
 	}
 	
 	class BranchClawItem extends DynamicGameObject implements BranchItem {
@@ -86,8 +117,21 @@ public class TreeHurt extends DynamicGameObject {
 		public BranchItem getItem(int index) {
 			return items.get(index);
 		}
-		protected RevoluteJoint getRootJoint() {
+		RevoluteJoint getRootJoint() {
 			return  (RevoluteJoint)items.get(0).getJoint();
+		}
+		void provideWaving() {
+			int index = 0;
+			for (BranchItem item : items) {
+				item.getJoint().setMaxMotorTorque(Statics.PhysicsBox2D.TREEHURT_BRANCHITEM_JOINT_NORMAL_TORQUE);
+//				item.getJoint().setMotorSpeed( (float) (index++ % 2 == 0 ? Math.sin(world.actTime * Statics.PhysicsBox2D.TREEHURT_BRANCHITEM_JOINT_NORMAL_TORQUE / 5)
+//						: -Math.sin(world.actTime * Statics.PhysicsBox2D.TREEHURT_BRANCHITEM_JOINT_NORMAL_TORQUE / 5)));
+//				
+				float speed = (float) (Math.sin( (world.actTime * Math.PI - 0.5 * index * Math.PI) /4));
+				index++;
+								
+				item.getJoint().setMotorSpeed(speed);
+			}
 		}
 	}
 	
@@ -131,7 +175,6 @@ public class TreeHurt extends DynamicGameObject {
 		}
 		public void buildClawTree() {
 			addClawBranches();
-			setRolling(true);
 		}
 	}
 	

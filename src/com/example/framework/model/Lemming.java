@@ -43,7 +43,7 @@ public class Lemming extends DynamicGameObject {
 	static  float SPEED = 3.5f;
 	
 	public static float ACT_SPEED = 0.1f;	//animation speed
-    float tModePeriod;   
+    float tModePeriod;
          
     public Lemming(float x, float y, float width, float height, float angle, int level, WorldKingSnake world) 
     {
@@ -133,7 +133,6 @@ public class Lemming extends DynamicGameObject {
 		else
 			isMoving = CharacterMind.STAY;
 			  		
-        act_time += deltaTime;
       	tModePeriod -= deltaTime;
     }
     

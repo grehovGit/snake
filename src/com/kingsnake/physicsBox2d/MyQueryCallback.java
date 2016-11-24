@@ -1,5 +1,7 @@
 package com.kingsnake.physicsBox2d;
 
+import java.util.List;
+
 import com.kingsnake.physicsBox2d.PhysicsBox2d;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -21,6 +23,7 @@ public class MyQueryCallback implements QueryCallback{
 	
 	public int task;
 	float data1, data2, data3, data4, data5;
+	List<Fixture> fixList;
 	
 	World world2d;
 	WorldKingSnake world;
@@ -33,6 +36,7 @@ public class MyQueryCallback implements QueryCallback{
 		world = world_;
 		worldPhys = worldPh;
 		dynObj = null;
+		fixList = null;
 		
 		data1 = 0;
 		data2 = 0;
@@ -89,6 +93,7 @@ public class MyQueryCallback implements QueryCallback{
 		data3 = y;
 		this.dynObj = dynObj;
 	}
+	
 	
 	void explosion(float power, float xEpicenter, float yEpicenter, Fixture fix)
 	{

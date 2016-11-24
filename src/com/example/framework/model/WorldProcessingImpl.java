@@ -944,6 +944,18 @@ public class WorldProcessingImpl implements WorldProcessing{
 		
 	}
 	
+	public static boolean isCharracterFriend(DynamicGameObject dynObj, DynamicGameObject dObj)
+	{
+		if((dynObj.stateHS.frendByRace == true && (dObj.objType == dynObj.objType)) || 
+				(dynObj.stateHS.frendToGamer > 0 && (!dObj.stateHS.isBot || dynObj.stateHS.frendToGamer == dObj.stateHS.frendToGamer)) ||
+				(dynObj.stateHS.frendtoAlienRace == dObj.objType)
+				)
+			return true;	//friend
+		else
+			return false;
+		
+	}
+	
 	void markSnakeCellsForFSKill(DynamicGameObject dynObj)
 	{
 		Snake snake = (Snake) dynObj;

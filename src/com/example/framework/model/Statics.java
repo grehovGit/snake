@@ -492,6 +492,8 @@ public class Statics {
 		public static final float SENSOR_FIGHT_SKILL_BACK_RADIUS = 1f;
 		public static final float SENSOR_FIGHT_SKILL_FORWARD_RAY_RADIUS = 10f;
 		
+		public static final float SENSOR_FIGHT_SKILL_TREEHURT_RADIUS = 2f;
+		
 		public static final float SENSOR_FIGHT_SKILL_FORWARD_CENTER_POS_X = 2.3f;
 		public static final float SENSOR_FIGHT_SKILL_FORWARD_CENTER_POS_Y = 0;
 		public static final float SENSOR_FIGHT_SKILL_LEFT_CENTER_POS_X = 0f;
@@ -674,16 +676,21 @@ public class Statics {
 		
 		//joints
 		public final static int TREEHURT_BRANCHITEM_JOINT = 1;
-		private final static int TREEHURT_BRANCHITEM_JOINT_LIMITANGLE = 60;
+		public final static int TREEHURT_BRANCHITEM_JOINT_LIMITLOWER_ANGLE = -60;
+		public final static int TREEHURT_BRANCHITEM_JOINT_LIMITUPPER_ANGLE = 30;
+		public final static float TREEHURT_BRANCHITEM_JOINT_NORMAL_TORQUE = 10f;
+		public final static float TREEHURT_BRANCHITEM_JOINT_NORMAL_SPEED = 1f;
+		public final static float TREEHURT_BRANCHITEM_JOINT_EXCITED_SPEED_START = 50f;
+		public final static float TREEHURT_BRANCHITEM_JOINT_EXCITED_SPEED_STEP = 17f;
 		//public ststatic getTreeHurt_
 		public static RevoluteJointDef  getHurtTreeBranchItemJointDef() {
 			RevoluteJointDef  itemJoint = new RevoluteJointDef();
 			itemJoint.enableLimit = true;
-			itemJoint.lowerAngle = (float) Math.toRadians(-TREEHURT_BRANCHITEM_JOINT_LIMITANGLE);
-			itemJoint.upperAngle = (float) Math.toRadians(TREEHURT_BRANCHITEM_JOINT_LIMITANGLE);
+			itemJoint.lowerAngle = (float) Math.toRadians(TREEHURT_BRANCHITEM_JOINT_LIMITLOWER_ANGLE);
+			itemJoint.upperAngle = (float) Math.toRadians(TREEHURT_BRANCHITEM_JOINT_LIMITUPPER_ANGLE);
 			itemJoint.enableMotor = true;
-			itemJoint.maxMotorTorque = 0.1f; 
-			itemJoint.motorSpeed = 0.0f; 
+			itemJoint.maxMotorTorque = TREEHURT_BRANCHITEM_JOINT_NORMAL_TORQUE; 
+			itemJoint.motorSpeed = TREEHURT_BRANCHITEM_JOINT_NORMAL_SPEED ; 
 			return itemJoint;
 		};
 
