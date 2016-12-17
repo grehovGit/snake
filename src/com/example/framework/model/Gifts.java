@@ -68,7 +68,7 @@ public class Gifts extends GameObject{
 	 {
 		 		super(x, y, width, height, 0, false, type, world);
 		 
-		 		act_time = 0;
+		 		actTime = 0;
 		 		shakeTime = SHAKE_PERIOD;
 		 		isEaten = false;	
 		 		isImmortal = true;
@@ -78,7 +78,7 @@ public class Gifts extends GameObject{
 	 {
 		 
 		 		this.type = type;
-		 		act_time = 0;
+		 		actTime = 0;
 		 		shakeTime = SHAKE_PERIOD;
 		 		isEaten = false;
 		 			         
@@ -169,7 +169,7 @@ public class Gifts extends GameObject{
 	 
      public void update(float deltaTime) {
 
-         act_time += deltaTime;
+         actTime += deltaTime;
          shakeTime -= deltaTime;
          
          if(shakeTime < 0)

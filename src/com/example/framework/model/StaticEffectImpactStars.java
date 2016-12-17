@@ -100,7 +100,7 @@ public class StaticEffectImpactStars extends StaticEffect {
          if(this.type != Statics.StaticEffect.IMPACT_STARS || this.ellipse == null)
         	 return null;
          
-         return ellipse.GetPointPos(index, act_time);
+         return ellipse.GetPointPos(index, actTime);
      }
      
      public int GetImpactStarsNumber() {

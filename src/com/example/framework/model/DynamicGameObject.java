@@ -71,7 +71,8 @@ public class DynamicGameObject extends GameObject
 	//variables for box2d phyiscs
 	public short fixtureGroupFilterId;
 	 
-	 public int objType = 0;
+	 public int objType;
+	 private int team;
 	 public GameObject objTarget, objLocalTarget;
 	 
 	 public DynamicGameObject() {};
@@ -91,6 +92,7 @@ public class DynamicGameObject extends GameObject
 	        velocity = new Vector2();
 	        accel = new Vector2();
 	        objType = type;
+	        team = type;
 	        stateHS = new HealthScore(level, type);
 	        oldPos = new Vector2();
 	        newPos = new Vector2();
@@ -163,6 +165,32 @@ public class DynamicGameObject extends GameObject
 	 
 	 public void SetObjTarget(GameObject gObj) {
 		 objTarget = gObj;
+	 }
+	 
+	 public void setFriend(DynamicGameObject friend, int typeFriendship) {
+		 switch (typeFriendship) {
+		 case HealthScore.FREND_BYRACE:
+			 stateHS.frendByRace = true;
+		 case HealthScore.FREND_TOALIENRACE:
+			 stateHS.frendtoAlienRace = friend.objType;
+		 case HealthScore.FREND_TOTEAM:
+			 stateHS.frendToTeam = friend.team;
+		 default:
+				 assert false : "illegal frienship type";
+		 }
+	 }
+	 
+	 public void unsetFriendship(int typeFriendship) {
+		 switch (typeFriendship) {
+		 case HealthScore.FREND_BYRACE:
+			 stateHS.frendByRace = false;
+		 case HealthScore.FREND_TOALIENRACE:
+			 stateHS.frendtoAlienRace = 0;
+		 case HealthScore.FREND_TOTEAM:
+			 stateHS.frendToTeam = 0;
+		 default:
+			 assert false : "illegal frienship type";
+		 }
 	 }
 	 
 	 public void update(float deltaTime) {	

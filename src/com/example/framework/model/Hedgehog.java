@@ -75,7 +75,7 @@ public class Hedgehog extends DynamicGameObject {
 			isMoving = CharacterMind.STAY;
 
 			
-        act_time += deltaTime;
+        actTime += deltaTime;
       	tModePeriod -= deltaTime;
     }    
     

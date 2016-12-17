@@ -20,11 +20,13 @@ import com.example.framework.model.GameObject;
 import com.example.framework.model.Gifts;
 import com.example.framework.model.Hedgehog;
 import com.example.framework.model.Lemming;
+import com.example.framework.model.Seed;
 import com.example.framework.model.Snake;
 import com.example.framework.model.SnakePart;
 import com.example.framework.model.StaticEffect;
 import com.example.framework.model.StaticEffectImpactStars;
 import com.example.framework.model.Statics;
+import com.example.framework.model.TreeHurt;
 import com.example.framework.model.WorldKingSnake;
 import com.kingsnake.control.ControlImpulse;
 import com.kingsnake.control.ControlJumps;
@@ -347,14 +349,14 @@ public class LevelScreen implements Screen {
 		    	
 		    	if(!sObj.isEaten)
 		    	{
-		    		if(sObj.act_time > Gifts.APPERAIANCE_PERIOD/2)
+		    		if(sObj.actTime > Gifts.APPERAIANCE_PERIOD/2)
 		    		{
 		    			//to do: add twitch
 					    game.batch.draw(sObj.position.x + 0.5f, sObj.position.y+ 0.5f, 
 				            		sObj.bounds.width, sObj.bounds.height, AssetsGL.apple);
 		    		}
 			    	
-		    		if(sObj.act_time <= Gifts.APPERAIANCE_PERIOD)
+		    		if(sObj.actTime <= Gifts.APPERAIANCE_PERIOD)
 		    		{
 			            TextureRegion keyFrame = AssetsGL.giftApper.getKeyFrame(world.actTime, 15, 0);		            
 			            game.batch.draw(sObj.position.x + 0.5f, sObj.position.y+ 0.5f, 1.5f, 1.5f, keyFrame);
@@ -364,11 +366,11 @@ public class LevelScreen implements Screen {
     		else if(gObj.type == Gifts.MUSHROOM_BLUE)
     		{
 		    	Gifts sObj = (Gifts) gObj;
-	    		if(sObj.act_time> Gifts.APPERAIANCE_PERIOD/2)
+	    		if(sObj.actTime> Gifts.APPERAIANCE_PERIOD/2)
 			    	game.batch.draw(sObj.position.x +0.5f, sObj.position.y+ 0.5f, 
 			    			sObj.bounds.width, sObj.bounds.height, AssetsGL.mushroomBlue);
 	    		
-	    		if(sObj.act_time <= Gifts.APPERAIANCE_PERIOD)
+	    		if(sObj.actTime <= Gifts.APPERAIANCE_PERIOD)
 	    		{
 		            TextureRegion keyFrame = AssetsGL.giftApper.getKeyFrame(world.actTime, 15, 0);		            
 		            game.batch.draw(sObj.position.x + 0.5f, sObj.position.y + 0.5f, 1.5f, 1.5f, keyFrame);
@@ -377,11 +379,11 @@ public class LevelScreen implements Screen {
     		else if(gObj.type == Gifts.MUSHROOM_YELLOW)
     		{
 		    	Gifts sObj = (Gifts) gObj;
-	    		if(sObj.act_time> Gifts.APPERAIANCE_PERIOD/2)
+	    		if(sObj.actTime> Gifts.APPERAIANCE_PERIOD/2)
 			    	game.batch.draw(sObj.position.x+0.5f, sObj.position.y+0.5f, 
 			    			sObj.bounds.width, sObj.bounds.height, AssetsGL.mushroomYellow);
 	    		
-	    		if(sObj.act_time <= Gifts.APPERAIANCE_PERIOD)
+	    		if(sObj.actTime <= Gifts.APPERAIANCE_PERIOD)
 	    		{
 		            TextureRegion keyFrame = AssetsGL.giftApper.getKeyFrame(world.actTime, 15, 0);		            
 		            game.batch.draw(sObj.position.x + 0.5f, sObj.position.y + 0.5f, 1.5f, 1.5f, keyFrame);
@@ -390,11 +392,11 @@ public class LevelScreen implements Screen {
     		else if(gObj.type == Gifts.MUSHROOM_BLUE_RED)
     		{
 		    	Gifts sObj = (Gifts) gObj;
-	    		if(sObj.act_time> Gifts.APPERAIANCE_PERIOD/2)
+	    		if(sObj.actTime> Gifts.APPERAIANCE_PERIOD/2)
 			    	game.batch.draw(sObj.position.x+0.5f, sObj.position.y+0.5f, 
 			    			sObj.bounds.width, sObj.bounds.height, AssetsGL.mushroomBRed);
 	    		
-	    		if(sObj.act_time <= Gifts.APPERAIANCE_PERIOD)
+	    		if(sObj.actTime <= Gifts.APPERAIANCE_PERIOD)
 	    		{
 		            TextureRegion keyFrame = AssetsGL.giftApper.getKeyFrame(world.actTime, 15, 0);		            
 		            game.batch.draw(sObj.position.x + 0.5f, sObj.position.y + 0.5f, 1.5f, 1.5f, keyFrame);
@@ -403,11 +405,11 @@ public class LevelScreen implements Screen {
     		else if(gObj.type == Gifts.MUSHROOM_BROWN)
     		{
 		    	Gifts sObj = (Gifts) gObj;
-	    		if(sObj.act_time> Gifts.APPERAIANCE_PERIOD/2)
+	    		if(sObj.actTime> Gifts.APPERAIANCE_PERIOD/2)
 			    	game.batch.draw(sObj.position.x+0.5f,sObj.position.y+0.5f, 
 			    			sObj.bounds.width, sObj.bounds.height, AssetsGL.mushroomBrown);
 	    		
-	    		if(sObj.act_time <= Gifts.APPERAIANCE_PERIOD)
+	    		if(sObj.actTime <= Gifts.APPERAIANCE_PERIOD)
 	    		{
 		            TextureRegion keyFrame = AssetsGL.giftApper.getKeyFrame(world.actTime, 15, 0);		            
 		            game.batch.draw(sObj.position.x + 0.5f, sObj.position.y + 0.5f, 1.5f, 1.5f, keyFrame);
@@ -964,7 +966,7 @@ public class LevelScreen implements Screen {
         		}
         		break;	
         	case Statics.DynamicGameObject.FSKILL_ICEBALL:
-        		float scale = MyMath.getRisingBulbApperianceBasedOnSin(dynObj.act_time, 0.5f, 0.2f);
+        		float scale = MyMath.getRisingBulbApperianceBasedOnSin(dynObj.actTime, 0.5f, 0.2f);
         		if(dynObj.stateHS.health > dynObj.stateHS.defencePower / 2)
 	            	game.batch.draw(AssetsGL.fSkillIce, dynObj.position.x - dynObj.bounds.width / 2, dynObj.position.y - dynObj.bounds.height / 2, 
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scale, scale, dynObj.angle);	            
@@ -973,8 +975,8 @@ public class LevelScreen implements Screen {
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scale, scale, dynObj.angle);	            
         		break; 
         	case Statics.DynamicGameObject.SEED_BEAT:
-        		float scaleX = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, true);
-        		float scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, false);
+        		float scaleX = ((Seed)dynObj).getCurScale(true);
+        		float scaleY = ((Seed)dynObj).getCurScale(false);
         		if(dynObj.stateHS.health > dynObj.stateHS.defencePower / 2)
 	            	game.batch.draw(AssetsGL.gameAtlas.findRegion("seedBeat"), dynObj.position.x - dynObj.bounds.width / 2, dynObj.position.y - dynObj.bounds.height / 2, 
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	            
@@ -983,8 +985,8 @@ public class LevelScreen implements Screen {
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	 
         		break;
         	case Statics.DynamicGameObject.SEED_HURT:
-        		scaleX = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, true);
-        		scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, false);
+        		scaleX = ((Seed)dynObj).getCurScale(true);
+        		scaleY = ((Seed)dynObj).getCurScale(false);
         		if(dynObj.stateHS.health > dynObj.stateHS.defencePower / 2)
 	            	game.batch.draw(AssetsGL.gameAtlas.findRegion("seedHurt"), dynObj.position.x - dynObj.bounds.width / 2, dynObj.position.y - dynObj.bounds.height / 2, 
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	            
@@ -993,8 +995,8 @@ public class LevelScreen implements Screen {
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	 
         		break;
         	case Statics.DynamicGameObject.SEED_MINER:
-        		scaleX = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, true);
-        		scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, false);
+        		scaleX = ((Seed)dynObj).getCurScale(true);
+        		scaleY = ((Seed)dynObj).getCurScale(false);
         		if(dynObj.stateHS.health > dynObj.stateHS.defencePower / 2)
 	            	game.batch.draw(AssetsGL.gameAtlas.findRegion("seedMiner"), dynObj.position.x - dynObj.bounds.width / 2, dynObj.position.y - dynObj.bounds.height / 2, 
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	            
@@ -1003,9 +1005,8 @@ public class LevelScreen implements Screen {
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	 
         		break;
         	case Statics.DynamicGameObject.SEED_MAD:
-        		scaleX = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, true);
-        		scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, false);
-
+        		scaleX = ((Seed)dynObj).getCurScale(true);
+        		scaleY = ((Seed)dynObj).getCurScale(false);
         		if(dynObj.stateHS.health > dynObj.stateHS.defencePower / 2)
 	            	game.batch.draw(AssetsGL.gameAtlas.findRegion("seedMad"), dynObj.position.x - dynObj.bounds.width / 2, dynObj.position.y - dynObj.bounds.height / 2, 
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	            
@@ -1014,8 +1015,8 @@ public class LevelScreen implements Screen {
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	 
         		break;
         	case Statics.DynamicGameObject.SEED_SMILE:
-        		scaleX = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, true);
-        		scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 15f, 5f, 0.15f, 3f, 1f, 0.1f, false);
+        		scaleX = ((Seed)dynObj).getCurScale(true);
+        		scaleY = ((Seed)dynObj).getCurScale(false);
         		if(dynObj.stateHS.health > dynObj.stateHS.defencePower / 2)
 	            	game.batch.draw(AssetsGL.gameAtlas.findRegion("seedSmile"), dynObj.position.x - dynObj.bounds.width / 2, dynObj.position.y - dynObj.bounds.height / 2, 
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2,  dynObj.bounds.width, dynObj.bounds.height, scaleX, scaleY, dynObj.angle);	            
@@ -1042,8 +1043,9 @@ public class LevelScreen implements Screen {
 	        		scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 0, 5f, 5f, 5f, 5f, 0.03f, false);
 	            	game.batch.draw(AssetsGL.gameAtlas.findRegion("treeHurtUp"), dynObj.position.x - dynObj.bounds.width / 2, dynObj.position.y - dynObj.bounds.height / 2 + 1, 
 	            			dynObj.bounds.width / 2, dynObj.bounds.height / 2 - 1,  dynObj.bounds.width, dynObj.bounds.height, scaleY, scaleY, dynObj.angle);		
-	        		scaleX = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 0, 4f, 0.15f, 3f, 1f, 0.1f, true);
-	        		scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 0, 4f, 0.15f, 3f, 1f, 0.1f, false);	        		
+	            	float beatPeriod = ((TreeHurt)dynObj).getHurtBeatPeriod();
+	            	scaleX = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 0, 0, 0.15f, beatPeriod, 1f, 0.1f, true);
+	        		scaleY = 1 + MyMath.getTwoStagedHurtBittenScale(world.actTime, 0, 0, 0.15f, beatPeriod, 1f, 0.1f, false);	        		
 	            	game.batch.draw(AssetsGL.gameAtlas.findRegion("treeHurtHurt"), dynObj.position.x - dynObj.bounds.width / 8 + 0.05f, dynObj.position.y - dynObj.bounds.height / 8 + .4f, 
 	            			dynObj.bounds.width / 8, dynObj.bounds.height / 8 - 0.4f,  dynObj.bounds.width / 4, dynObj.bounds.height / 4, scaleX, scaleY, dynObj.angle);	
         		}
@@ -1052,7 +1054,7 @@ public class LevelScreen implements Screen {
 
         	}
         	
-    		if(dynObj.isCharacter && dynObj.act_time <= Gifts.APPERAIANCE_PERIOD)
+    		if(dynObj.isCharacter && dynObj.actTime <= Gifts.APPERAIANCE_PERIOD)
     		{
 	            TextureRegion keyFrame = AssetsGL.giftApper.getKeyFrame(world.actTime, 15, 0);		            
 	            game.batch.draw(dynObj.position.x, dynObj.position.y, 1.5f, 1.5f, keyFrame);
@@ -1088,7 +1090,7 @@ public class LevelScreen implements Screen {
 	            break;
         	case Statics.StaticEffect.IMPACT:
 	    		{
-		            keyFrame = AssetsGL.impact.getKeyFrame(effectObj.act_time, MyAnimation.ANIMATION_NONLOOPING);	
+		            keyFrame = AssetsGL.impact.getKeyFrame(effectObj.actTime, MyAnimation.ANIMATION_NONLOOPING);	
 		            game.batch.draw(effectObj.position.x, effectObj.position.y, effectObj.bounds.width, effectObj.bounds.height, ((StaticEffect) effectObj).angle, keyFrame);
 	    		}
 	    		break;

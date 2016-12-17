@@ -1205,7 +1205,7 @@ public class LabOrientDejkstra {
 				continue;			
 			
 			if((dynObj.stateHS.frendByRace == true && (dObj.objType == dynObj.objType)) || 
-					(dynObj.stateHS.frendToGamer > 0 && (!dObj.stateHS.isBot || dynObj.stateHS.frendToGamer == dObj.stateHS.frendToGamer)) ||
+					(dynObj.stateHS.frendToTeam > 0 && (!dObj.stateHS.isBot || dynObj.stateHS.frendToTeam == dObj.stateHS.frendToTeam)) ||
 					(dynObj.stateHS.frendtoAlienRace == dObj.objType)
 					)
 					continue;	//friend		

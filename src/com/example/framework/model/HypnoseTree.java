@@ -27,7 +27,7 @@ public class HypnoseTree extends GameObject{
 		 
 		 		WORLD_WIDTH = w_width;
 		 		WORLD_HEIGHT = w_height;
-		 		act_time = 0;
+		 		actTime = 0;
 		 		tModePeriod = 0;
 		 		orientation = orient;
 		 			         
@@ -45,7 +45,7 @@ public class HypnoseTree extends GameObject{
 	 
      public void update(float deltaTime) {   	   	          	
 		
-        act_time += deltaTime;
+        actTime += deltaTime;
   	    tModePeriod += deltaTime;
      }
 

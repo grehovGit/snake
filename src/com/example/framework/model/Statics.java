@@ -680,8 +680,8 @@ public class Statics {
 		public final static int TREEHURT_BRANCHITEM_JOINT_LIMITUPPER_ANGLE = 30;
 		public final static float TREEHURT_BRANCHITEM_JOINT_NORMAL_TORQUE = 10f;
 		public final static float TREEHURT_BRANCHITEM_JOINT_NORMAL_SPEED = 1f;
-		public final static float TREEHURT_BRANCHITEM_JOINT_EXCITED_SPEED_START = 50f;
-		public final static float TREEHURT_BRANCHITEM_JOINT_EXCITED_SPEED_STEP = 17f;
+		public final static float TREEHURT_BRANCHITEM_JOINT_EXCITED_SPEED_START = 20f;
+		public final static float TREEHURT_BRANCHITEM_JOINT_EXCITED_SPEED_STEP = 10f;
 		//public ststatic getTreeHurt_
 		public static RevoluteJointDef  getHurtTreeBranchItemJointDef() {
 			RevoluteJointDef  itemJoint = new RevoluteJointDef();

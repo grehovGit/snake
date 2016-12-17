@@ -49,10 +49,10 @@ public class HealthScore {
 	public static final int FISH_COST = 20;
 	
 	public static final int FREND_BYRACE = 1;
-	public static final int FREND_TOGAMER = 2;
+	public static final int FREND_TOTEAM = 2;
 	public static final int FREND_TOALIENRACE = 3;
 	public boolean frendByRace;	//false - enemy to all, true - friend to it type 
-	public int frendToGamer;	//0 - enemy to player, >0 friend to gamer and all his friends with same index 
+	public int frendToTeam;	//0 - enemy to teams, >0 friend to team with same index 
 	public int frendtoAlienRace;	//0 - enemy to all other races, >0 - the friendship race type  
 
 	
@@ -141,7 +141,7 @@ public class HealthScore {
 		velocityIncrease = 0;
 		frendByRace = true;
 		frendtoAlienRace = 0;
-		frendToGamer = 0;
+		frendToTeam = 0;
 		heatStarsOn = false;
 		isSwallow = false;
 		isOpenJaws = false;
@@ -205,8 +205,8 @@ public class HealthScore {
 			else
 				frendByRace = true;
 		}
-		else if(fType == FREND_TOGAMER)
-			frendToGamer = val;
+		else if(fType == FREND_TOTEAM)
+			frendToTeam = val;
 		else if(fType == FREND_TOALIENRACE)
 			frendtoAlienRace = val;		
 	}

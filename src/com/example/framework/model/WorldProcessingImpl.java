@@ -935,7 +935,7 @@ public class WorldProcessingImpl implements WorldProcessing{
 	public boolean isCharFriend(DynamicGameObject dynObj, DynamicGameObject dObj)
 	{
 		if((dynObj.stateHS.frendByRace == true && (dObj.objType == dynObj.objType)) || 
-				(dynObj.stateHS.frendToGamer > 0 && (!dObj.stateHS.isBot || dynObj.stateHS.frendToGamer == dObj.stateHS.frendToGamer)) ||
+				(dynObj.stateHS.frendToTeam > 0 && (!dObj.stateHS.isBot || dynObj.stateHS.frendToTeam == dObj.stateHS.frendToTeam)) ||
 				(dynObj.stateHS.frendtoAlienRace == dObj.objType)
 				)
 			return true;	//friend
@@ -947,7 +947,7 @@ public class WorldProcessingImpl implements WorldProcessing{
 	public static boolean isCharracterFriend(DynamicGameObject dynObj, DynamicGameObject dObj)
 	{
 		if((dynObj.stateHS.frendByRace == true && (dObj.objType == dynObj.objType)) || 
-				(dynObj.stateHS.frendToGamer > 0 && (!dObj.stateHS.isBot || dynObj.stateHS.frendToGamer == dObj.stateHS.frendToGamer)) ||
+				(dynObj.stateHS.frendToTeam > 0 && (!dObj.stateHS.isBot || dynObj.stateHS.frendToTeam == dObj.stateHS.frendToTeam)) ||
 				(dynObj.stateHS.frendtoAlienRace == dObj.objType)
 				)
 			return true;	//friend

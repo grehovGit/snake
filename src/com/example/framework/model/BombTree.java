@@ -93,7 +93,7 @@ public class BombTree extends DynamicGameObject {
     		if(AdjustBombing())
     			readyBombing = false;  		
     	
-        act_time += deltaTime;
+        actTime += deltaTime;
       	tModePeriod -= deltaTime;
       	bombPeriod -= deltaTime;
     }

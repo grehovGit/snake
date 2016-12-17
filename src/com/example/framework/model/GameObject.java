@@ -19,7 +19,7 @@ public class GameObject {
 	 
 	 WorldKingSnake world;
 	 public int type = 0;
-	 public float act_time = 0;
+	 public float actTime = 0;
 	 public float lifetimePeriod = 0;
 	 public boolean isDynamicObject = false;
 	 public boolean isImmortal;
@@ -104,7 +104,7 @@ public class GameObject {
 		 
 		 public void update (float deltaTime)
 		 {
-			 act_time += deltaTime;
+			 actTime += deltaTime;
 			 
 			 if (isFlaming)
 				 processFlaming();

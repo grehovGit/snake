@@ -45,7 +45,7 @@ public class StaticEffect extends GameObject{
 	 {
 		 		super(type, x, y, width, height);
 		 
-		 		act_time = 0;			 			 		
+		 		actTime = 0;			 			 		
 		 		this.position.set(x, y);
 		 		this.angle = angle;	
 	 }
@@ -54,7 +54,7 @@ public class StaticEffect extends GameObject{
 	 {
 		 		super(x, y, width, height, angle, false, type, world);
 		 
-		 		act_time = 0;		 			 		
+		 		actTime = 0;		 			 		
 		 		this.position.set(x, y);
 		 		this.angle = angle;	
 	 }
@@ -63,7 +63,7 @@ public class StaticEffect extends GameObject{
 	 {
 	 		super(type, x, y, width, height);
 	 
-	 		act_time = 0;
+	 		actTime = 0;
 	 		this.lifetimePeriod = lifeTime;			 			 		
 	 		this.angle = angle;	 		
 	 }
@@ -71,18 +71,18 @@ public class StaticEffect extends GameObject{
 	 
      public void update(float deltaTime) {
 
-         act_time += deltaTime;         	 
+         actTime += deltaTime;         	 
      }
      
      public void setPermanentEffectToActiveMode(float activeModePeriod) {
 
-         act_time = 0; 
+         actTime = 0; 
          lifetimePeriod = activeModePeriod;       	 
      }
      
      public void setPermanentEffectToInactiveMode() {
 
-         act_time = 0; 
+         actTime = 0; 
          lifetimePeriod = 0;       	 
      }
      

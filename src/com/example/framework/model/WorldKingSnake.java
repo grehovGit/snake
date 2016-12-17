@@ -141,7 +141,7 @@ public class WorldKingSnake {
 	        relief = new ArrayList<GameObject>();	  
 	        dynObjects = new ArrayList<DynamicGameObject>();
 	        
-	        character = new Snake(5.5f, 11.5f, WORLD_WIDTH, WORLD_HEIGHT, Snake.RIGHT, HealthScore.LEVEL_PINK, this);
+	        character = new Snake(10.5f, 15.5f, WORLD_WIDTH, WORLD_HEIGHT, Snake.RIGHT, HealthScore.LEVEL_PINK, this);
 	        dynObjects.add(character);
 	        character.stateHS.isBot = false;
 	        
@@ -256,7 +256,7 @@ public class WorldKingSnake {
 	    		{	    			
 	    			effect.update(deltaTime);
 
-	    			if (effect.act_time >=  effect.lifetimePeriod
+	    			if (effect.actTime >=  effect.lifetimePeriod
 	    					|| (effect.getMaster() != null && effect.getMaster().isDynamicObject 
 	    												   && ((DynamicGameObject)effect.getMaster()).stateHS.isDead == HealthScore.DEAD_DELETED))
 	    			{    				
@@ -276,7 +276,7 @@ public class WorldKingSnake {
 	    		{
 	    			sObj.update(deltaTime);	    			
 
-	    			if(sObj.act_time >=  sObj.lifetimePeriod)
+	    			if(sObj.actTime >=  sObj.lifetimePeriod)
 	    				sObj.setPermanentEffectToInactiveMode();   			
 	    		}
 	    	}
@@ -380,7 +380,7 @@ public class WorldKingSnake {
 	    		{
 	    			((StaticEffect) sObj).update(deltaTime);	    			
 
-	    			if(((StaticEffect) sObj).act_time >= ((StaticEffect) sObj).lifetimePeriod)
+	    			if(((StaticEffect) sObj).actTime >= ((StaticEffect) sObj).lifetimePeriod)
 	    			{
 	    				statObjects.remove(i);
 	    				--i;
@@ -526,22 +526,10 @@ public class WorldKingSnake {
 			        
 			        //seed
 			        Factories.FactoryProducer.getFactory(Factories.FACTORY_DYNAMIC_OBJECTS).
-			        getDynamicObject(Statics.DynamicGameObject.SEED_HURT, 10, 3, 0, 0, 0, 5, this);
+			        getDynamicObject(Statics.DynamicGameObject.SEED_HURT, 10, 3, 0, 0, 0, 0, this);			       
 			        
 			        Factories.FactoryProducer.getFactory(Factories.FACTORY_DYNAMIC_OBJECTS).
-			        getDynamicObject(Statics.DynamicGameObject.SEED_BEAT, 10, 3, 0, 0, 0, 5, this);
-			        
-			        Factories.FactoryProducer.getFactory(Factories.FACTORY_DYNAMIC_OBJECTS).
-			        getDynamicObject(Statics.DynamicGameObject.SEED_SMILE, 10, 3, 0, 0, 0, 7, this);
-			        
-			        Factories.FactoryProducer.getFactory(Factories.FACTORY_DYNAMIC_OBJECTS).
-			        getDynamicObject(Statics.DynamicGameObject.SEED_MAD, 10, 3, 0, 0, 0, 2, this);
-			        
-			        Factories.FactoryProducer.getFactory(Factories.FACTORY_DYNAMIC_OBJECTS).
-			        getDynamicObject(Statics.DynamicGameObject.SEED_MINER, 10, 3, 0, 0, 0, 3, this);
-			        
-			        Factories.FactoryProducer.getFactory(Factories.FACTORY_DYNAMIC_OBJECTS).
-			        getDynamicObject(Statics.DynamicGameObject.TREE_HURT, 8, 10, 0, 0, 0, 3, this);			        
+			        getDynamicObject(Statics.DynamicGameObject.TREE_HURT, 8, 10, 0, 0, 0, 1, this);			        
 
 			    }		        		      		        
 			    
@@ -558,6 +546,9 @@ public class WorldKingSnake {
             for(int i=0; i < dynObjects.size(); ++i)
             {
             	DynamicGameObject dynObj = dynObjects.get(i);  
+            	
+            	if (dynObj == null)
+            		dynObj = null;
             	
             	//some simple dyn objects, like dead parts
             	if(dynObj.stateHS == null)
@@ -903,7 +894,7 @@ public class WorldKingSnake {
 			            break;	
 	            	case DynamicGameObject.BOMB_FALL_ACTION:
 	            		dynObj.update(deltaTime);
-	            		if(dynObj.act_time > BombTree.BOMB_EXIST_TIME)
+	            		if(dynObj.actTime > BombTree.BOMB_EXIST_TIME)
 	            			wProc.placeTreeBomb(dynObj);
 	            		break;
             	}

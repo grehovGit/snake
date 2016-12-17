@@ -126,7 +126,7 @@ public class Frog extends DynamicGameObject {
 
         }
     	
-        act_time += deltaTime;
+        actTime += deltaTime;
         tJump -= deltaTime;
   	    tSitPeriod += deltaTime;          	
     }

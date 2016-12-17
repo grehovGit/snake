@@ -361,29 +361,29 @@ public class PhysicsBox2d {
 	
 	public void processOutOfWorld()
 	{
-		Array <Body> bodies = new Array<Body>();
-		world2d.getBodies(bodies);
-		Body tBody;
-		
-		for(int i = 0; i < bodies.size; ++i)
-		{
-			tBody = bodies.get(i);
-			
-			Vector2 vector = new Vector2(); 
-			vector = tBody.getPosition();
-			
-			if(vector.x >= WorldKingSnake.WORLD_WIDTH)
-				tBody.setTransform(0, vector.y, tBody.getAngle());
-			else if (vector.x < 0)
-				tBody.setTransform( WorldKingSnake.WORLD_WIDTH, vector.y, tBody.getAngle());
-			
-			if(vector.y >= WorldKingSnake.WORLD_HEIGHT)
-				tBody.setTransform(vector.x, 0, tBody.getAngle());
-			else if (vector.y < 0)
-				tBody.setTransform(vector.x, WorldKingSnake.WORLD_HEIGHT, tBody.getAngle());
-		}
-		
-		bodies.clear();
+//		Array <Body> bodies = new Array<Body>();
+//		world2d.getBodies(bodies);
+//		Body tBody;
+//		
+//		for(int i = 0; i < bodies.size; ++i)
+//		{
+//			tBody = bodies.get(i);
+//			
+//			Vector2 vector = new Vector2(); 
+//			vector = tBody.getPosition();
+//			
+//			if(vector.x >= WorldKingSnake.WORLD_WIDTH)
+//				tBody.setTransform(0, vector.y, tBody.getAngle());
+//			else if (vector.x < 0)
+//				tBody.setTransform( WorldKingSnake.WORLD_WIDTH, vector.y, tBody.getAngle());
+//			
+//			if(vector.y >= WorldKingSnake.WORLD_HEIGHT)
+//				tBody.setTransform(vector.x, 0, tBody.getAngle());
+//			else if (vector.y < 0)
+//				tBody.setTransform(vector.x, WorldKingSnake.WORLD_HEIGHT, tBody.getAngle());
+//		}
+//		
+//		bodies.clear();
 	}
 	
 	

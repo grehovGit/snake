@@ -58,7 +58,7 @@ public class Snake extends DynamicGameObject {
 	        world.world2d.createSnake(this);
 	        initArmor();
 
-	        /*fSkills.addSkillDefault(Statics.FightingSkills.FORWARD_ATTACK);
+	        fSkills.addSkillDefault(Statics.FightingSkills.FORWARD_ATTACK);
 	        fSkills.setSkillLevel(Statics.FightingSkills.FORWARD_ATTACK, 3);
 	        fSkills.setSkillChargeLevel(Statics.FightingSkills.FORWARD_ATTACK, 3);
 	        
@@ -94,9 +94,9 @@ public class Snake extends DynamicGameObject {
 	        fSkills.setSkillLevel(Statics.FightingSkills.IMPULSE_DEFFENSE_FORWARD, 3);
 	        fSkills.setSkillChargeLevel(Statics.FightingSkills.IMPULSE_DEFFENSE_FORWARD, 3);
 	        
-	        //fSkills.addSkillDefault(Statics.FightingSkills.IMPULSE_ATTACK_FORWARD);
-	        //fSkills.setSkillLevel(Statics.FightingSkills.IMPULSE_ATTACK_FORWARD, 3);
-	        //fSkills.setSkillChargeLevel(Statics.FightingSkills.IMPULSE_ATTACK_FORWARD, 3);
+	        fSkills.addSkillDefault(Statics.FightingSkills.IMPULSE_ATTACK_FORWARD);
+	        fSkills.setSkillLevel(Statics.FightingSkills.IMPULSE_ATTACK_FORWARD, 3);
+	        fSkills.setSkillChargeLevel(Statics.FightingSkills.IMPULSE_ATTACK_FORWARD, 3);
 	        
 	        fSkills.addSkillDefault(Statics.FightingSkills.IMPULSE_DEFFENSE_LEFTSIDE);
 	        fSkills.setSkillLevel(Statics.FightingSkills.IMPULSE_DEFFENSE_LEFTSIDE, 3);
@@ -104,7 +104,7 @@ public class Snake extends DynamicGameObject {
 	        
 	        fSkills.addSkillDefault(Statics.FightingSkills.IMPULSE_DEFFENSE_RIGHTSIDE);
 	        fSkills.setSkillLevel(Statics.FightingSkills.IMPULSE_DEFFENSE_RIGHTSIDE, 3);
-	        fSkills.setSkillChargeLevel(Statics.FightingSkills.IMPULSE_DEFFENSE_RIGHTSIDE, 3);   */    
+	        fSkills.setSkillChargeLevel(Statics.FightingSkills.IMPULSE_DEFFENSE_RIGHTSIDE, 3);     
 	    }
 	    
 	    public void update(float deltaTime)
@@ -166,7 +166,7 @@ public class Snake extends DynamicGameObject {
 	    	processFSkills(deltaTime);    		    			    		
     		advance(deltaTime);
 	    	    
-	        act_time += deltaTime;
+	        actTime += deltaTime;
 	    }
 	    
 	    public void initArmor()
@@ -187,8 +187,8 @@ public class Snake extends DynamicGameObject {
 	        SnakePart head = parts.get(0);	             	        
 	    	
 	        //calculations for sinusoidal motion     
-            float phaseY = (float) (this.act_time * head.stateHS.velocity * Math.PI - Math.PI/2);
-            float phaseAngle = (float) (this.act_time * head.stateHS.velocity * Math.PI);
+            float phaseY = (float) (this.actTime * head.stateHS.velocity * Math.PI - Math.PI/2);
+            float phaseAngle = (float) (this.actTime * head.stateHS.velocity * Math.PI);
             float velAngle = 0;           
     	
 	        int len = parts.size();	        

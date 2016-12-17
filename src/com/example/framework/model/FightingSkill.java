@@ -1411,7 +1411,7 @@ public class FightingSkill {
 	public static boolean isFriend(DynamicGameObject dynObjA, DynamicGameObject dynObjB)
 	{
 		if((dynObjA.stateHS.frendByRace == true && (dynObjB.objType == dynObjA.objType)) || //friend by race
-				(dynObjA.stateHS.frendToGamer > 0 && (!dynObjB.stateHS.isBot || dynObjA.stateHS.frendToGamer == dynObjB.stateHS.frendToGamer)) || //gamer team
+				(dynObjA.stateHS.frendToTeam > 0 && (!dynObjB.stateHS.isBot || dynObjA.stateHS.frendToTeam == dynObjB.stateHS.frendToTeam)) || //gamer team
 				(dynObjA.stateHS.frendtoAlienRace == dynObjB.objType)	//char A is friend to char B race
 		)
 			return true;

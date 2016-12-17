@@ -31,6 +31,7 @@ import com.example.framework.model.DynamicGameObject;
 import com.example.framework.model.GameObject;
 import com.example.framework.model.Gifts;
 import com.example.framework.model.HealthScore;
+import com.example.framework.model.Seed;
 import com.example.framework.model.SnakePart;
 import com.example.framework.model.StaticEffect;
 import com.example.framework.model.Statics;
@@ -309,7 +310,7 @@ public class MyContactListener implements ContactListener{
 	{
 		boolean isFriend = false;
 		if((dynObjA.stateHS.frendByRace == true && (dynObjB.objType == dynObjA.objType)) || 
-				(dynObjA.stateHS.frendToGamer > 0 && (!dynObjB.stateHS.isBot || dynObjA.stateHS.frendToGamer == dynObjB.stateHS.frendToGamer)) || //gamer team
+				(dynObjA.stateHS.frendToTeam > 0 && (!dynObjB.stateHS.isBot || dynObjA.stateHS.frendToTeam == dynObjB.stateHS.frendToTeam)) || //gamer team
 				(dynObjA.stateHS.frendtoAlienRace == dynObjB.objType)	//char A is friend to char B race
 		)
 			isFriend = true;
@@ -321,7 +322,9 @@ public class MyContactListener implements ContactListener{
 				charToDynAttack(dynObjA, dynObjB, contact);
 			else
 				world.wProc.CharToCharAttack(dynObjA, dynObjB);		
-		}		
+		}
+		
+		if (Seed.isSeed(dynObjA.objType)) dynObjA.setFriend(dynObjB, HealthScore.FREND_TOTEAM);
 	}
 	
 	public void contactCharObjToSensor(Fixture fixA, DynamicGameObject dynObjA, GameObject gObjB, Fixture fixB, Contact contact) 
@@ -607,7 +610,7 @@ public class MyContactListener implements ContactListener{
 	{
 		boolean isFriend = false;
 		if((dynObjA.stateHS.frendByRace == true && (dynObjB.objType == dynObjA.objType)) || 
-				(dynObjA.stateHS.frendToGamer > 0 && (!dynObjB.stateHS.isBot || dynObjA.stateHS.frendToGamer == dynObjB.stateHS.frendToGamer)) || //gamer team
+				(dynObjA.stateHS.frendToTeam > 0 && (!dynObjB.stateHS.isBot || dynObjA.stateHS.frendToTeam == dynObjB.stateHS.frendToTeam)) || //gamer team
 				(dynObjA.stateHS.frendtoAlienRace == dynObjB.objType)	//char A is friend to char B race
 		)
 			isFriend = true;

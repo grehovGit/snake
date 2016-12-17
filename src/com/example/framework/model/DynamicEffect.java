@@ -55,7 +55,7 @@ public class DynamicEffect extends DynamicGameObject{
  		data3 = 0;
  		data4 = 0;
  
- 		act_time = 0;			 			 				 		
+ 		actTime = 0;			 			 				 		
  		angle = 0;
  		lifetimePeriod = LIFETIME_PERIOD;			 		      
         velocity.set(0, 0);		        
@@ -78,7 +78,7 @@ public class DynamicEffect extends DynamicGameObject{
 	 	 data2 = 0;
 	 	 data3 = 0;	
 	 	 data4 = 0;
-		 act_time = 0;			 			 				 		
+		 actTime = 0;			 			 				 		
 		 lifetimePeriod = lifeTime;		
 		 angle = angle_;
 		 master = master_;
@@ -160,7 +160,7 @@ public class DynamicEffect extends DynamicGameObject{
 		        this.velocity.set(0, 0);
 		        this.gravity.set(0, G);	            	          	           
 		    }
-		     act_time += deltaTime;        
+		     actTime += deltaTime;        
 		     lifetimePeriod -= deltaTime;   
 		 }
 		 

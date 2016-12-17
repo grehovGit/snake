@@ -107,9 +107,9 @@ public class MyMath {
 	 * @param curTime 												>=0
 	 * @param endTime 												>=0
 	 * @param exPeriod excited period before endTime 				>=0
+	 * @param beatPeriod - exactly beat period 						>=0
 	 * @param normalBeatPeriod - beaten period during normal period	>= 2 * beatPeriod
 	 * @param exBeatPeriod - beaten period during excited period 	>= 2 * beatPeriod
-	 * @param beatPeriod - exactly beat period 						>=0
 	 * @param ampDelta max delta from original scale (1)			>=0
 	 * @return current scale by current stage. After endTime starts normal stage. If current beatPeriod == 0, = original scale
 	 */
